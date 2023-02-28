@@ -19,6 +19,8 @@ int getUserInp(const int argc, const char *argv[]) {
             string num_str = argv[1];
             size_t size;
             num = stoi(num_str, &size);
+            if (num < 10)
+                return num;
             if (num_str.length() != 4 or size != 4)
                 throw invalid_argument("Not four digits!");
         } catch (invalid_argument e){
@@ -47,6 +49,7 @@ int main(const int argc, const char *argv[]) {
     int num = getUserInp(argc, argv);
     if (num != -1) {
         string num_str = to_string(num);
+        if (num < 10) num_str = "000"+num_str;
         string n0(1,num_str[0]); string n1(1,num_str[1]);
         string n2(1,num_str[2]); string n3(1,num_str[3]);
         string path = n0 + "/" + n1 + "/" + n2 + "/" + n3 + "/";
