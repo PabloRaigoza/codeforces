@@ -50,10 +50,8 @@ int main(const int argc, const char *argv[]) {
         string n0(1,num_str[0]); string n1(1,num_str[1]);
         string n2(1,num_str[2]); string n3(1,num_str[3]);
         string path = n0 + "/" + n1 + "/" + n2 + "/" + n3 + "/";
-        // path = n0;
         sys_call("mkdir -p " + path);
-        // sys_call("mkdir -p 1/2");
-        // cout << path << endl;
+        sys_call("touch " + path + "in");
         for (int i = 2; i < argc; i++) {
             string cur = argv[i];
             if (i == 2 and cur == "-all") {
@@ -68,9 +66,8 @@ int main(const int argc, const char *argv[]) {
             }
         }
 
-        if (argc >= 2) {
+        if (argc >= 3) {
             sys_call("cd " + path);
-            cout << "Consider:\ncd " << path << '\n';
             if (string(argv[2]) == "-all") {
                 sys_call("code " + path + "A.cpp");
             } else {
